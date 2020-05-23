@@ -1,5 +1,32 @@
-.list-1 {
-  height: 385px !important;
-  overflow: auto;
-  padding: 0;
+.content {
+ app-main {
+  width: 100%;
+ }
+}
+
+.content {
+ display: flex;
+ margin: 82px auto 32px;
+ padding: 0 16px;
+ max-width: 960px;
+ flex-direction: column;
+ align-items: center;
+}
+
+.main-content {
+ display: flex;
+ margin: 82px auto 32px;
+ padding: 0 16px;
+ flex-direction: column;
+}
+
+.card svg.material-icons path {
+ fill: #888;
+}
+
+.card-container {
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+ margin-top: 16px;
 }

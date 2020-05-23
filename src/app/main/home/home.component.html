@@ -1,0 +1,71 @@
+<div class="row">
+ <div class="col-6 col-sm-3 mb-4" *ngFor="let key of data">
+  <div class="card border-0">
+   <div class="card-body p-3 text-{{apiService.colors[key]}}">
+    <p class="card-text text-uppercase mb-2">
+     <span>{{key}}</span>
+     <span class="float-right badge badge-{{apiService.colors[key]}}" title="New">{{list[key].new}}</span>
+    </p>
+    <h5 class="card-title text-right m-0 font-weight-bold" title="Total">{{list[key].total}}</h5>
+   </div>
+  </div>
+ </div>
+</div>
+
+<div class="row">
+ <div class="col-12">
+  <ul class="list-group">
+   <li class="bg-light-gray list-group-item text-white">
+    <div class="row font-weight-bold text-center">
+     <div class="col-1 col-sm-1">
+      #
+     </div>
+     <div class="col-10 col-sm-3 text-left">
+      States
+     </div>
+     <div class="col-3 col-sm-2">
+      Confirmed
+     </div>
+     <div class="col-3 col-sm-2">
+      Active
+     </div>
+     <div class="col-3 col-sm-2">
+      Recovered
+     </div>
+     <div class="col-3 col-sm-2">
+      Death
+     </div>
+    </div>
+   </li>
+   <li class="list-group-item table-list">
+    <ul class="list-group">
+     <li class="list-group-item" *ngFor="let data of tableData; let i = index">
+
+      <div class="row text-right">
+       <div class="col-1 col-sm-1 font-weight-bold text-center">
+        {{i + 1}}
+       </div>
+       <div class="col-10 col-sm-3 text-left text-truncate">
+         <a [title]="data.state" (click)="redirectToRegion(data.statecode)" class="pointer">
+           {{data.state}}
+         </a>
+       </div>
+       <div class="col-3 col-sm-2">
+        {{data.confirmed}}
+       </div>
+       <div class="col-3 col-sm-2">
+        {{data.active}}
+       </div>
+       <div class="col-3 col-sm-2">
+        {{data.recovered}}
+       </div>
+       <div class="col-3 col-sm-2">
+        {{data.deaths}}
+       </div>
+      </div>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </div>
+</div>
