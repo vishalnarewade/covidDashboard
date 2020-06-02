@@ -1,0 +1,9 @@
+.card-text {
+  text-transform: uppercase;
+}
+
+@media only screen  and (min-width: 992px) {
+  .card-text {
+    text-transform: capitalize;
+  }
+}

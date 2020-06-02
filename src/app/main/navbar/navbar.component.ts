@@ -12,6 +12,11 @@ export class NavbarComponent implements OnInit {
   title = 'Dashboard';
   activeTab = '';
   list = ['world', 'country', 'regions'];
+  info: string = [
+    "This is demo covid dashboard.",
+    "Show all data from covid19api and covid19india"
+  ].join('\n');
+
 
   constructor(
     public router: Router
