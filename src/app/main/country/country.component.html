@@ -37,9 +37,10 @@
           </div>
         </div>
       </li>
+
       <li class="list-group-item table-list">
         <ul class="list-group">
-          <li class="list-group-item" *ngFor="let data of tableData; let i = index">
+          <li class="list-group-item" *ngFor="let data of tableData | orderBy: 'TotalConfirmed': 1; let i = index">
 
             <div class="row text-right">
               <div class="col-1 col-sm-1 font-weight-bold text-center">

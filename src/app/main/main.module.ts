@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { MainRoutingModule } from './main-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     CommonModule,
     ReactiveFormsModule,
     MainRoutingModule,
+    SharedModule
   ]
 })
 export class MainModule { }
