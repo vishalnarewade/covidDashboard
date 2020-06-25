@@ -54,16 +54,16 @@
                 </span>
               </div>
               <div class="col-3 col-sm-2">
-                {{data.confirmed}}
+                {{data.confirmed | numberWithCommas}}
               </div>
               <div class="col-3 col-sm-2">
-                {{data.active}}
+                {{data.active | numberWithCommas}}
               </div>
               <div class="col-3 col-sm-2">
-                {{data.recovered}}
+                {{data.recovered | numberWithCommas}}
               </div>
               <div class="col-3 col-sm-2">
-                {{data.deceased}}
+                {{data.deceased | numberWithCommas}}
               </div>
             </div>
           </li>

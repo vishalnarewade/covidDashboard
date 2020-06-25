@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { KeyValuePipe } from './pipes/key-value.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
+import { NumberWithCommasPipe } from './pipes/number-with-commas.pipe';
 
 @NgModule({
-  declarations: [KeyValuePipe, OrderByPipe],
+  declarations: [OrderByPipe, NumberWithCommasPipe],
   imports: [
     CommonModule
   ],
-  exports: [OrderByPipe],
+  exports: [OrderByPipe, NumberWithCommasPipe],
 })
 export class SharedModule { }
