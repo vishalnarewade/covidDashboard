@@ -11,11 +11,7 @@ import { Router } from '@angular/router';
 
 export class HomeComponent implements OnInit {
   list = {
-    confirmed: { 
-      total: 0,
-      new: 0
-    },
-    active: { 
+    confirmed: {
       total: 0,
       new: 0
     },
@@ -23,7 +19,11 @@ export class HomeComponent implements OnInit {
       total: 0,
       new: 0
     },
-    deaths: { 
+    vaccinated1: { 
+      total: 0,
+      new: 0
+    },
+    vaccinated2: { 
       total: 0,
       new: 0
     },
@@ -46,16 +46,21 @@ export class HomeComponent implements OnInit {
   getData() {
     this.apiService.getAllIndiaList()
     .subscribe((data) => {
-      const  { statewise } = data;
-      const [ total ] = statewise.splice(0, 1); 
-      this.tableData = statewise;
+      this.tableData = Object.keys(this.apiService.statesName).map(x => {
+        this.list.confirmed.total += data[x].total.confirmed;
+        this.list.confirmed.new += data[x].delta.confirmed ? data[x].delta.confirmed : 0; 
+        this.list.recovered.total += data[x].total.recovered;
+        this.list.recovered.new += data[x].delta.recovered ? data[x].delta.recovered : 0; 
+        this.list.vaccinated1.total += data[x].total.vaccinated1;
+        this.list.vaccinated1.new += data[x].delta.vaccinated1 ? data[x].delta.vaccinated1 : 0; 
+        this.list.vaccinated2.total += data[x].total.vaccinated2;
+        this.list.vaccinated2.new += data[x].delta.vaccinated2 ? data[x].delta.vaccinated2 : 0; 
 
-      this.apiService.objectKeys(total).forEach(x => {
-        if (this.data.includes(x)) this.list[x] = Object.assign({}, {
-          total: total[x],
-          new: total[`delta${x}`]
-        });
-      });
+        return {
+          state: this.apiService.statesName[x],
+          ...data[x].total
+        }
+      })
     }, error => alert('something wrong, please refresh after 5 minute'))
   }
 

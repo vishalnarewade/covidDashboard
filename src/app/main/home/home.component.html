@@ -27,13 +27,13 @@
       Confirmed
      </div>
      <div class="col-3 col-sm-2">
-      Active
-     </div>
-     <div class="col-3 col-sm-2">
       Recovered
      </div>
      <div class="col-3 col-sm-2">
-      Death
+      Vaccinated - 1
+     </div>
+     <div class="col-3 col-sm-2">
+      Vaccinated - 2
      </div>
     </div>
    </li>
@@ -46,7 +46,8 @@
         {{i + 1}}
        </div>
        <div class="col-10 col-sm-3 text-left text-truncate">
-         <a [title]="data.state" (click)="redirectToRegion(data.statecode)" class="pointer">
+         <!-- <a [title]="data.state" (click)="redirectToRegion(data.statecode)" class="pointer"> -->
+          <a [title]="data.state" class="pointer">
            {{data.state}}
          </a>
        </div>
@@ -54,13 +55,13 @@
         {{data.confirmed | numberWithCommas}}
        </div>
        <div class="col-3 col-sm-2">
-        {{data.active | numberWithCommas}}
-       </div>
-       <div class="col-3 col-sm-2">
         {{data.recovered | numberWithCommas}}
        </div>
        <div class="col-3 col-sm-2">
-        {{data.deaths | numberWithCommas}}
+        {{data.vaccinated1 | numberWithCommas}}
+       </div>
+       <div class="col-3 col-sm-2">
+        {{data.vaccinated2 | numberWithCommas}}
        </div>
       </div>
      </li>

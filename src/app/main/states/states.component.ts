@@ -15,6 +15,15 @@ export class StatesComponent implements OnInit {
   data: any = [];
   tableData = [];
   statelist = [];
+  sampleData = {
+    district: '',
+    confirmed: 0,
+    deceased: 0,
+    recovered: 0,
+    tested: 0,
+    vaccinated1: 0,
+    vaccinated2: 0
+  }
 
   constructor(
     public apiService: CovidApiService,
@@ -28,39 +37,38 @@ export class StatesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
+    this.statelist = Object.entries(this.apiService.statesName);
   }
 
   getData() {
-    this.apiService.getIndiaStateList()
+    this.apiService.getAllIndiaList()
       .subscribe((data) => {
-      this.data = this.apiService.objectKeys(data).reduce((acc: any, current: string) => {
-        var statecode = data[current].statecode;
-        if (!('UN' === statecode)) {
-          const list = this.apiService.objectKeys(data[current].districtData).map(x => ({
-            state: x, ...data[current].districtData[x],
-          }));
+        this.data = this.apiService.objectKeys(data).reduce((acc, x) => {
+          var currentDistrict = data[x].districts;
 
-          acc.push({
-            stateName: current,
-            statecode,
-            data: list,
+          if (!currentDistrict) return acc;
+          var allDistrict = this.apiService.objectKeys(currentDistrict).map(v => {
+            var current = currentDistrict[v];
+
+            return {
+              ...this.sampleData,
+              district: v,
+              ...current.total
+            };
           });
 
-          this.statelist.push({ name: current, code: statecode });
-        }
-        return acc;
-      }, []);
+          return { ...acc, [x]: allDistrict};
+        }, {});
 
-      this.form.setValue({
-        selected: (this.router.snapshot.paramMap.get('id') || this.data[0].statecode),
-      });
-      this.changeState(this.form.value.selected);
+        this.form.setValue({
+          selected: this.statelist[0][0],
+        });
+        this.changeState(this.statelist[0][0]);
     }, error => alert('something wrong, please refresh after 5 minute'))
   }
 
   changeState(code) {
     this.tableData = [];
-    const list = this.data.filter(x => x.statecode === code);
-    this.tableData = this.tableData.concat(list[0].data);
+    this.tableData = this.data[code];
   }
 }

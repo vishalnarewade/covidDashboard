@@ -5,8 +5,8 @@
       <div class="form-group mb-0">
         <select class="form-control" name="state" formControlName="selected"
           (change)="changeState($event.target.value)">
-          <option *ngFor="let state of statelist" [value]="state.code">
-            {{state.name}}
+          <option *ngFor="let state of statelist" [value]="state[0]">
+            {{state[1]}}
           </option>
         </select>
       </div>
@@ -29,7 +29,7 @@
             Confirmed
           </div>
           <div class="col-3 col-sm-2">
-            Active
+            Deceased
           </div>
           <div class="col-3 col-sm-2">
             Recovered
@@ -49,15 +49,15 @@
                 {{i + 1}}
               </div>
               <div class="col-10 col-sm-3 text-left text-truncate">
-                <span [title]="data.state">
-                  {{data.state}}
+                <span [title]="data.district">
+                  {{data.district}}
                 </span>
               </div>
               <div class="col-3 col-sm-2">
                 {{data.confirmed | numberWithCommas}}
               </div>
               <div class="col-3 col-sm-2">
-                {{data.active | numberWithCommas}}
+                {{data.deceased | numberWithCommas}}
               </div>
               <div class="col-3 col-sm-2">
                 {{data.recovered | numberWithCommas}}
