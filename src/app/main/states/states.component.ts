@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CovidApiService } from 'src/app/shared/covid-api.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class StatesComponent implements OnInit {
-  form: FormGroup;
+  form: UntypedFormGroup;
   data: any = [];
   tableData = [];
   statelist = [];
@@ -27,7 +27,7 @@ export class StatesComponent implements OnInit {
 
   constructor(
     public apiService: CovidApiService,
-    public formBuilder: FormBuilder,
+    public formBuilder: UntypedFormBuilder,
     public router: ActivatedRoute, 
   ) {
     this.form = this.formBuilder.group({
