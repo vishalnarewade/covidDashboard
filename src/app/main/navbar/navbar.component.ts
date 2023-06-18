@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit {
   isShown:boolean = false;
   title = 'Dashboard';
   activeTab = '';
-  list = ['world', 'country', 'regions'];
+  list = ['country', 'regions'];
   info: string = [
     "This is demo covid dashboard.",
     "Show all data from covid19api and covid19india"
